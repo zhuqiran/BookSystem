@@ -1,0 +1,26 @@
+package com.java456.dao;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.java456.entity.Bank;
+import com.java456.entity.Message;
+
+
+public interface MessageDao extends JpaRepository<Message, Integer>, JpaSpecificationExecutor<Message> {
+    @Query(value = "select * from t_message where id = ?1", nativeQuery = true)
+    public Message findId(Integer id);   
+	
+	
+	
+	@Query(value="select * from t_message  where source like CONCAT('%',:source,'%')",nativeQuery=true)
+    List<Message> seachMessage(@Param("source") String source);;
+    @Query(value="select * from t_message  order by create_date_time ",nativeQuery=true)
+    List<Message> searchNewMessage();;	
+}
+
