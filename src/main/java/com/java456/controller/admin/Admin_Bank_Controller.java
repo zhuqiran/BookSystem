@@ -124,6 +124,7 @@ public class Admin_Bank_Controller {
      *  /admin/bank/delete
      * @param idsStr id组成的字符串，以逗号分隔
      */
+    @RequestMapping("/delete")
     public JSONObject delete(@RequestParam(value = "ids", required = false) String idsStr, HttpServletResponse response,
                              HttpServletRequest request){
         String[] ids = idsStr.split(",");
